@@ -1,18 +1,28 @@
-import React from 'react';
-import SearchBar from '../components/SearchBar';
-import RecipeList from '../components/RecipeList';
-import FavoritesList from '../components/FavoritesList';
-import RecommendationsList from '../components/RecommendationsList';
+// src/App.jsx
+import AddRecipeForm from './components/AddRecipeForm';
+import DeleteRecipeButton from './components/DeleteRecipeButton';
+import EditRecipeForm from './components/EditRecipeForm';
+import FavoritesList from './components/FavoritesList';
+import Home from './components/Home';
+import RecipeDetails from './components/RecipeDetails';
+import RecipeList from './components/RecipeList';
+import RecommendationsList from './components/RecommendationsList';
+import SearchBar from './components/SearchBar';
 
-const Home = () => {
+const App = () => {
   return (
     <div>
-      <SearchBar />
-      <RecipeList />
+      <AddRecipeForm />
+      <DeleteRecipeButton />
+      <EditRecipeForm />
       <FavoritesList />
+      <Home />
+      <RecipeDetails />
+      <RecipeList />
       <RecommendationsList />
+      <SearchBar />
     </div>
   );
 };
 
-export default Home;
+export default App;
