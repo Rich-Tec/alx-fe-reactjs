@@ -1,6 +1,6 @@
 // src/components/DeleteRecipeButton.jsx
 import { useNavigate } from 'react-router-dom'; // <-- Required for redirecting after deletion
-import { useRecipeStore } from '../store/recipeStore'; // <-- Import your Zustand store
+import { useRecipeStore } from './recipeStore'; // <-- Import your Zustand store
 
 const DeleteRecipeButton = ({ recipeId }) => {
   const deleteRecipe = useRecipeStore(state => state.deleteRecipe); // <-- Access delete action
