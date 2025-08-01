@@ -1,4 +1,5 @@
 // src/App.jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AddRecipeForm from './components/AddRecipeForm';
 import DeleteRecipeButton from './components/DeleteRecipeButton';
 import EditRecipeForm from './components/EditRecipeForm';
@@ -11,17 +12,21 @@ import SearchBar from './components/SearchBar';
 
 const App = () => {
   return (
-    <div>
+    <Router>
+      <Routes>
+        <Route>
       <AddRecipeForm />
       <DeleteRecipeButton />
       <EditRecipeForm />
       <FavoritesList />
-      <Home />
+      <omePage />
       <RecipeDetails />
       <RecipeList />
       <RecommendationsList />
       <SearchBar />
-    </div>
+        </Route>
+      </Routes>
+    </Router>
   );
 };
 

@@ -3,6 +3,7 @@ import AddRecipeForm from '../components/AddRecipeForm';
 import DeleteRecipeButton from '../components/DeleteRecipeButton';
 import EditRecipeForm from '../components/EditRecipeForm';
 import FavoritesList from '../components/FavoritesList';
+// Rename the import to avoid conflict
 import HomeComponent from '../components/Home';
 import RecipeDetails from '../components/RecipeDetails';
 import RecipeList from '../components/RecipeList';
