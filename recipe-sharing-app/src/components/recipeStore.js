@@ -5,6 +5,18 @@ export const useRecipeStore = create((set) => ({
   favorites: [],
   recommendations: [],
 
+  //Add setRecipes
+  setRecipes: (newRecipes) =>
+    set(() => ({
+      recipes: newRecipes,
+    })),
+
+  // Add addRecipe
+  addRecipe: (newRecipe) =>
+    set((state) => ({
+      recipes: [...state.recipes, newRecipe],
+    })),
+
   addFavorite: (recipeId) =>
     set((state) => ({
       favorites: [...new Set([...state.favorites, recipeId])],
