@@ -1,14 +1,11 @@
-// src/App.jsx
 import React from 'react';
 import Search from './components/Search';
 
-function App() {
-  return (
-    <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-      <h1>GitHub User Search</h1>
-      <Search />
-    </div>
-  );
-}
+const App = () => (
+  <div className="bg-gray-100 min-h-screen">
+    <h1 className="text-3xl font-bold text-center pt-6">GitHub User Search</h1>
+    <Search />
+  </div>
+);
 
 export default App;
