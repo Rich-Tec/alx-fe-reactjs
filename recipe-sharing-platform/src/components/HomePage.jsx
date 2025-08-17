@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import RecipeCard from "./RecipeCard";
 
 export default function HomePage() {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     import("../data.json")
-      .then((mod) => {
-        setRecipes(mod.default || []);
-      })
+      .then((mod) => setRecipes(mod.default || []))
       .finally(() => setLoading(false));
   }, []);
 
@@ -32,12 +32,10 @@ export default function HomePage() {
           {recipes.map((recipe) => (
             <div
               key={recipe.id}
-              className="hover:shadow-lg rounded-md transition"
+              className="hover:shadow-lg rounded-md transition cursor-pointer"
+              onClick={() => navigate(`/recipe/${recipe.id}`)}
             >
-              <RecipeCard
-                recipe={recipe}
-                onView={() => alert(`Open details for: ${recipe.title}`)}
-              />
+              <RecipeCard recipe={recipe} />
             </div>
           ))}
         </section>
