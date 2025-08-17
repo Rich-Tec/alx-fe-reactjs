@@ -7,7 +7,7 @@ export default function HomePage() {
 
   useEffect(() => {
     import("../data.json")
-      .then(mod => {
+      .then((mod) => {
         setRecipes(mod.default || []);
       })
       .finally(() => setLoading(false));
@@ -15,7 +15,7 @@ export default function HomePage() {
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-10">
-      <header className="mb-8">
+      <header className="mb-8 text-center">
         <h1 className="text-3xl font-bold">🍳 Recipe Sharing Platform</h1>
         <p className="text-gray-600">Discover and share your favorite recipes.</p>
       </header>
@@ -23,13 +23,22 @@ export default function HomePage() {
       {loading ? (
         <p className="text-center text-gray-500">Loading recipes...</p>
       ) : (
-        <section className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {recipes.map(recipe => (
-            <RecipeCard
+        <section
+          className="
+            grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
+            hover:shadow-md rounded-lg p-4 bg-white
+          "
+        >
+          {recipes.map((recipe) => (
+            <div
               key={recipe.id}
-              recipe={recipe}
-              onView={() => alert(`Open details for: ${recipe.title}`)}
-            />
+              className="hover:shadow-lg rounded-md transition"
+            >
+              <RecipeCard
+                recipe={recipe}
+                onView={() => alert(`Open details for: ${recipe.title}`)}
+              />
+            </div>
           ))}
         </section>
       )}
