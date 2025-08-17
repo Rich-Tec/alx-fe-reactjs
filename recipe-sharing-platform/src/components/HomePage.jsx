@@ -1,45 +1,48 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import RecipeCard from "./RecipeCard";
+// src/components/HomePage.jsx
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-export default function HomePage() {
+const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    import("../data.json")
-      .then((mod) => setRecipes(mod.default || []))
-      .finally(() => setLoading(false));
+    fetch("/data.json")
+      .then((res) => res.json())
+      .then((data) => setRecipes(data))
+      .catch((err) => console.error("Error loading recipes:", err));
   }, []);
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-10">
-      <header className="mb-8 text-center">
-        <h1 className="text-3xl font-bold">🍳 Recipe Sharing Platform</h1>
-        <p className="text-gray-600">Discover and share your favorite recipes.</p>
-      </header>
+    <div className="p-6">
+      <h1 className="text-3xl font-bold mb-6 text-center">Recipe Sharing Platform</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {recipes.map((recipe) => (
+          <div
+            key={recipe.id}
+            className="bg-white rounded shadow hover:shadow-lg hover:scale-105 transition-transform"
+          >
+            <img
+              src={recipe.image}
+              alt={recipe.title}
+              className="w-full h-48 object-cover rounded-t"
+            />
+            <div className="p-4">
+              <h2 className="text-xl font-semibold">{recipe.title}</h2>
+              <p className="text-gray-600">{recipe.summary}</p>
 
-      {loading ? (
-        <p className="text-center text-gray-500">Loading recipes...</p>
-      ) : (
-        <section
-          className="
-            grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
-            hover:shadow-md rounded-lg p-4 bg-white
-          "
-        >
-          {recipes.map((recipe) => (
-            <div
-              key={recipe.id}
-              className="hover:shadow-lg rounded-md transition cursor-pointer"
-              onClick={() => navigate(`/recipe/${recipe.id}`)}
-            >
-              <RecipeCard recipe={recipe} />
+              {/* ✅ Use Link instead of <a> */}
+              <Link
+                to={`/recipe/${recipe.id}`}
+                className="inline-block mt-4 text-indigo-600 hover:underline"
+              >
+                View Details →
+              </Link>
             </div>
-          ))}
-        </section>
-      )}
-    </main>
+          </div>
+        ))}
+      </div>
+    </div>
   );
-}
+};
+
+export default HomePage;
