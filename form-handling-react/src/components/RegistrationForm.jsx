@@ -11,10 +11,10 @@ function RegistrationForm() {
 
   const validate = () => {
     const errs = {};
-    if (!username.trim()) errs.username = 'Username is required';
-    if (!email.trim()) errs.email = 'Email is required';
+    if (!username) errs.username = 'Username is required';
+    if (!email) errs.email = 'Email is required';
     else if (!/^\S+@\S+\.\S+$/.test(email)) errs.email = 'Email is invalid';
-    if (!password.trim()) errs.password = 'Password is required';
+    if (!password) errs.password = 'Password is required';
     else if (password.length < 6) errs.password = 'Password must be at least 6 characters';
     return errs;
   };
